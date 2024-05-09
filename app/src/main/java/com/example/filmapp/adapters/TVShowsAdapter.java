@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.filmapp.R;
 import com.example.filmapp.databinding.ItemContainerTvShowBinding;
+import com.example.filmapp.listeners.TVShowsListener;
 import com.example.filmapp.models.TVShow;
 
 import java.util.List;
@@ -16,6 +17,11 @@ import java.util.List;
 public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowViewHolder> {
     private List<TVShow> tvShows;
     private LayoutInflater layoutInflater;
+    private TVShowsListener tvShowsListener;
+    public TVShowsAdapter(List<TVShow> tvShows, TVShowsListener tvShowsListener) {
+        this.tvShows = tvShows;
+        this.tvShowsListener = tvShowsListener;
+    }
 
     public TVShowsAdapter(List<TVShow> tvShows) {
         this.tvShows = tvShows;
@@ -43,7 +49,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowVi
         return tvShows.size();
     }
 
-    static class TVShowViewHolder extends RecyclerView.ViewHolder {
+    class TVShowViewHolder extends RecyclerView.ViewHolder {
         private ItemContainerTvShowBinding itemContainerTvShowBinding;
 
         public TVShowViewHolder(ItemContainerTvShowBinding itemContainerTvShowBinding) {
@@ -54,6 +60,7 @@ public class TVShowsAdapter extends RecyclerView.Adapter<TVShowsAdapter.TVShowVi
         public void bindTVShow(TVShow tvShow) {
             itemContainerTvShowBinding.setTvShow(tvShow);
             itemContainerTvShowBinding.executePendingBindings();
+            itemContainerTvShowBinding.getRoot().setOnClickListener(view -> tvShowsListener.onTVShowClicked(tvShow));
         }
     }
 }

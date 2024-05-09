@@ -9,6 +9,10 @@
             name="isLoading"
             type="Boolean"/>
 
+        <variable
+            name="isLoadingMore"
+            type="Boolean"/>
+
         <import type="android.view.View" />
 
     </data>
@@ -24,13 +28,14 @@
 
         <LinearLayout
             android:id="@+id/layoutHeader"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_width="410dp"
+            android:layout_height="55dp"
             android:background="@color/colorPrimaryDark"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="@dimen/_8sdp"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="1dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -75,7 +80,10 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:padding="@dimen/_4sdp"
+            android:paddingStart="@dimen/_4sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_45sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
@@ -89,6 +97,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            android:visibility="@{isLoading? View.VISIBLE : View.GONE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvShowsRecyclerView"
+            app:layout_constraintEnd_toEndOf="@+id/tvShowsRecyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
